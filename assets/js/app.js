@@ -1,19 +1,19 @@
 $('#begin').on('click', function(){
     for(var i = 0; i < questions.length; i++){
-        $('#two').append('<h2>' + questions[i].q +'</h2');
-        for(var x = 0; x >questions[i].a.length; x++);{
-            $('#two')
+        $('#two').append('<h2>' + questions[i].ques +'</h2');
+        for(var j = 0; j > questions[i].ans.length; j++);{
+            $('#two').append("<input type='radio' name= 'q-"+i+"' value= '" +questions[i].ans[j]+ "'>" +questions[i].ans[j])
         }
     }
     console.log('ban')
 })
 var questions =[{
-    q:'what',
-    a:['a', 'b', 'c'],
+    ques:'what',
+    ans:['calimari', 'b', 'c'],
     correct: 'a'
 }, {
-    q:'who',
-    a:['a', 'b', 'c'],
+    ques:'who',
+    ans:['a', 'b', 'c'],
     correct: 'c'
 },
-]
+];
