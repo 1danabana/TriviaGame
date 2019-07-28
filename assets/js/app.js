@@ -1,15 +1,18 @@
 $('#begin').on('click', function(){
     game.start();
 });
+$(document).on('click', "#finish", function(){
+    game.done();
+});
 
 var questions =[{
     ques:'what class is the U.S.S Enterprise NCC-1701 lead by James Tiberius Kirk',
     answer: ['celestial', 'Constitution', 'Galaxy'],
-    correct: 'Constitution'
+    correctChoice: 'Constitution'
 }, {
     ques:'who is the doctor of the NCC-1701',
     answer: ["Leonard Hortatio McCoy", "Worf son of Mogh", "Beaverly Crusher"],
-    correct: 'Leonard Hortatio McCoy'
+    correctChoice: 'Leonard Hortatio McCoy'
 },
 ];
 
@@ -20,7 +23,8 @@ var game = {
     countdown: function(){
         game.counter--;
         $('#counter').html(game.counter);
-        if(game.counter <=0){
+        if(game.counter <= 0){
+            console.log
             game.done();
         }
     },
@@ -34,7 +38,32 @@ var game = {
                 $('#two').append("<input type='radio' name= 'ques-"+i+"' value='" +questions[i].answer[j]+ "'>" +questions[i].answer[j]);
             }
         }
+        $('#two').append('<br><button id="finish">done</button>')
     },
-    
+    done: function(){
+        $.each($('input[name="ques-0]":checked'),function() {
+            if($(this).val() == questions[0].correctChoice) {
+              game.correct++;
+            } else {
+                game.wrong++;
+            }
+        });
+        $.each($('input[name="ques-1]":checked'),function() {
+            if($(this).val() == questions[1].correctChoice) {
+              game.correct++;
+            } else {
+                game.wrong++;
+            }
+        });
+      this.result();
+    },
+    result: function(){
+        clearInterval(timer)
+        $('#two h2').remove();
+        $('#two').html('<hr>Complete</h2>');
+        $('#two').append("<h3>Correct answers!: "+this.correct+"</h3>");
+        $('#two').append("<h3>Correct answers!: "+this.wrong+"</h3>");
+        $('#two').append('<h3>unanswerd: ' +(questions.length-(this.wrong+this.correct))+'</h3>')
+    }
     
 }
