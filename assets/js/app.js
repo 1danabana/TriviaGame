@@ -41,14 +41,14 @@ var game = {
         $('#two').append('<br><button id="finish">done</button>')
     },
     done: function(){
-        $.each($('input[name="ques-0]":checked'),function() {
+        $.each($('input[name="ques-0"]:checked'),function() {
             if($(this).val() == questions[0].correctChoice) {
               game.correct++;
             } else {
                 game.wrong++;
             }
         });
-        $.each($('input[name="ques-1]":checked'),function() {
+        $.each($('input[name="ques-1"]:checked'),function() {
             if($(this).val() == questions[1].correctChoice) {
               game.correct++;
             } else {
